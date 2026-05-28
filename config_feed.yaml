@@ -1,0 +1,57 @@
+# Feeding Robot Arm Configuration
+# Load this with: rosparam load config_feed.yaml /config
+
+# Camera-robot calibration (same as original waste project)
+hand2cam_tf_matrix:
+- [0, 0, 1, -0.101]
+- [-1, 0, 0, 0]
+- [0, -1, 0, 0.045]
+- [0, 0, 0, 1]
+
+# Fixed food pick position (world coords) - right side of the robot
+# Adjust these based on your actual food placement location
+food_pick_position: [0.15, 0.25, 0.02]
+
+# Arm joint angles for the detection pose (camera facing user)
+# Each tuple is (servo_id, angle)
+# IDs: 1=base, 2=shoulder, 3=elbow, 4=wrist1, 5=wrist2, 10=gripper
+detect_arm_joints:
+- [1, 500]
+- [2, 650]
+- [3, 55]
+- [4, 400]
+- [5, 500]
+- [10, 100]
+
+# Number of frames to wait after moving to detect position
+detect_wait_frames: 5
+
+# Stability filter: require N consecutive frames with mouth within M pixels
+stability_frames: 30
+stability_pixels: 30
+
+# Gripper pitch angle when picking/placing
+pick_pitch: 80
+
+# Retreat distance after releasing food (meters)
+release_retreat: 0.06
+
+# Face detection model path
+# Model: deepcam-cn/yolov5-face (https://github.com/deepcam-cn/yolov5-face)
+# Weights downloaded to weights/yolov5s-face.pt (54MB)
+# On Jetson Nano, copy to /home/hiwonder/weights/
+face_model_path: "/home/hiwonder/weights/yolov5s-face.onnx"
+
+# yolov5-face repo clone path (needed for model architecture)
+face_repo_path: "/home/hiwonder/yolov5-face"
+
+# Average human face width for depth estimation (meters)
+face_width_real: 0.14
+
+# Detection confidence threshold
+face_conf_thresh: 0.5
+
+# Camera resolution
+camera_resolution:
+  height: 480
+  width: 640
