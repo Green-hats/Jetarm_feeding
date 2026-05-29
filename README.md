@@ -89,7 +89,7 @@ depth = camera_fx * face_width_real / face_bbox_width_pixels
 
 基于人脸宽度估算相机到脸的距离, 无需预标定平面。
 
-# 原始垃圾分拣说明
+# 原始垃圾分拣说明（本项目基于垃圾分拣项目修改）
 
 硬件: Hiwonder JetArm + Jetson Nano
 架构: Python3 ROS 节点 → 摄像头 → YOLO检测 → 坐标转换 → /grasp actionlib 运动
